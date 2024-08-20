@@ -5,6 +5,12 @@ const { Pool } = require('pg');
 const app = express();
 const port = 3001;
 
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://fredapi-pushpinder-sekhons-projects.vercel.app');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
 // 1. Set up CORS middleware to allow requests from your Vercel frontend
 app.use(cors({
   origin: 'https://fredapi-pushpinder-sekhons-projects.vercel.app', // Replace with your frontend URL
