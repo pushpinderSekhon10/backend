@@ -8,7 +8,7 @@ const port = 3001;
 // Use CORS middleware to allow requests from your Vercel frontend
 app.use(cors());
 
-
+app.options('*', cors());
 
 
 // Set up PostgreSQL connection
