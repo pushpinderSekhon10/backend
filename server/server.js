@@ -17,8 +17,14 @@ const pool = new Pool({
 });
 
 // Define your route to handle requests
-app.get('/your-endpoint', (req, res) => {
-  res.json({ message: 'This is accessible by anyone' });
+app.get('/fredkeys/GDP', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM your_table'); // Replace with your actual query and table name
+    res.json(result.rows);
+  } catch (err) {
+    console.error('Error executing query', err.stack);
+    res.status(500).send('Server error');
+  }
 });
 
 // Start the server
