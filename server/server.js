@@ -6,11 +6,10 @@ const app = express();
 const port = 3001;
 
 // Use CORS middleware to allow requests from your Vercel frontend
-app.use(cors({
-  origin: 'https://fredapi-pushpinder-sekhons-projects.vercel.app', // Your frontend URL
-  methods: 'GET, POST, PUT, DELETE',
-  allowedHeaders: 'Content-Type, Authorization',
-}));
+app.use(cors());
+
+
+
 
 // Set up PostgreSQL connection
 const pool = new Pool({
@@ -18,14 +17,8 @@ const pool = new Pool({
 });
 
 // Define your route to handle requests
-app.get('/fredkeys/GDP', async (req, res) => {
-  try {
-    const result = await pool.query('SELECT * FROM your_table'); // Replace with your actual query and table name
-    res.json(result.rows);
-  } catch (err) {
-    console.error('Error executing query', err.stack);
-    res.status(500).send('Server error');
-  }
+app.get('/your-endpoint', (req, res) => {
+  res.json({ message: 'This is accessible by anyone' });
 });
 
 // Start the server
